@@ -8,7 +8,11 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         {/* <Route path="/lista" element={<ListPokemon />} /> */}
-        <Route path="/lista/pagina/:page" element={<ListPokemon />} />
+        <Route
+          path="/pagina/:page"
+          element={<ListPokemon listType="default" />}
+        />
+        <Route path="/:search" element={<ListPokemon listType="search" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
