@@ -7,7 +7,8 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/lista" element={<ListPokemon />} />
+        {/* <Route path="/lista" element={<ListPokemon />} /> */}
+        <Route path="/lista/pagina/:page" element={<ListPokemon />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

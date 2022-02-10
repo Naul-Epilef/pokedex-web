@@ -11,3 +11,7 @@ export interface IPokemon {
   name: string;
   type: string[];
 }
+
+export interface ITable {
+  pokemonList: IPokemon[];
+}
