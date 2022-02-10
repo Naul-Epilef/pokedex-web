@@ -1,4 +1,4 @@
-import { ITable } from "../interfaces";
+import { ITable } from "../../interfaces";
 
 const Table = ({ pokemonList }: ITable) => {
   return (
