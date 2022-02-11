@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Header from "../Components/Header";
 import SearchPokemon from "./SearchPokemon";
 import ListPokemon from "./ListPokemon";
 import NotFound from "./NotFound";
@@ -9,6 +10,7 @@ import FavoritePokemon from "./FavoritedPokemon";
 const Router = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         {/* <Route
           path="/pagina/:page"
