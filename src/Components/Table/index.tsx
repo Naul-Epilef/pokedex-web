@@ -1,6 +1,45 @@
-import { ITable } from "../../interfaces";
+import { ILocalStorage, ITable } from "../../interfaces";
 
-const Table = ({ pokemonList }: ITable) => {
+import {
+  validateFavorites,
+  getFavorites,
+  setFavorites,
+} from "../../services/localStorage";
+
+const Table = ({ pokemonList, isFavorite, updateStorage }: ITable) => {
+  function handleToggleFavorite(id: string, national_number: string) {
+    if (validateFavorites()) {
+      const storage = getFavorites();
+
+      if (!storage.favs.includes(national_number)) {
+        storage.favs.push(national_number);
+        storage.favs.sort();
+        document.getElementById(id)!.innerHTML = "Desfavoritar";
+      } else {
+        const index = storage.favs.indexOf(national_number);
+        storage.favs.splice(index, 1);
+        document.getElementById(id)!.innerHTML = "Favoritar";
+      }
+
+      setFavorites(storage);
+
+      if (isFavorite) {
+        if (updateStorage) {
+          updateStorage();
+        }
+      }
+      return;
+    }
+    const storage = { favs: [] } as ILocalStorage;
+    storage.favs.push(national_number);
+    setFavorites(storage);
+  }
+
+  function handleShowFavorites() {
+    if (validateFavorites()) {
+      console.log(getFavorites());
+    }
+  }
   return (
     <ul>
       {pokemonList &&
@@ -26,8 +65,21 @@ const Table = ({ pokemonList }: ITable) => {
                   pokemon.evolution?.name +
                   ".infos"
                 }
+                // onClick={() => handleFavorite(pokemon.national_number)}
               >
-                {pokemon.name} {pokemon.national_number}
+                {`${pokemon.name} ${pokemon.national_number}`}
+                <button
+                  id={`${pokemon.name}.${pokemon.national_number}`}
+                  onClick={() =>
+                    handleToggleFavorite(
+                      `${pokemon.name}.${pokemon.national_number}`,
+                      pokemon.national_number
+                    )
+                  }
+                >
+                  {pokemon.isFavorite ? "Desfavoritar" : "Favoritar"}
+                </button>
+                <button onClick={() => handleShowFavorites()}>Mostrar</button>
               </li>
               <li
                 key={

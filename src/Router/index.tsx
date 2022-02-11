@@ -4,6 +4,7 @@ import SearchPokemon from "./SearchPokemon";
 import ListPokemon from "./ListPokemon";
 import NotFound from "./NotFound";
 import PagedPokemon from "./PagedPokemon";
+import FavoritePokemon from "./FavoritedPokemon";
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
           element={<ListPokemon listType="default" />}
         /> */}
         {/* <Route path="/:search" element={<ListPokemon listType="search" />} /> */}
+        <Route path="/favoritos" element={<FavoritePokemon />} />
         <Route path="/lista" element={<ListPokemon />} />
         <Route path="/pagina/:page" element={<PagedPokemon />} />
         <Route path="/:search" element={<SearchPokemon />} />

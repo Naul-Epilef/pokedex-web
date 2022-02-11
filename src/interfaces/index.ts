@@ -10,8 +10,15 @@ export interface IPokemon {
   };
   name: string;
   type: string[];
+  isFavorite: boolean;
 }
 
 export interface ITable {
   pokemonList: IPokemon[];
+  isFavorite?: false | boolean;
+  updateStorage?(): void;
+}
+
+export interface ILocalStorage {
+  favs: string[];
 }

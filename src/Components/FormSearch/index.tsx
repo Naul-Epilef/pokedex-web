@@ -15,6 +15,7 @@ const InputSearch = () => {
   function handleClickSearch() {
     navigate(`/${inputSearch}`);
   }
+
   return (
     <>
       <input
