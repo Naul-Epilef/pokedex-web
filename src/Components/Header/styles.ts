@@ -4,6 +4,8 @@ const HeaderStyled = styled.header`
   width: 100%;
   height: 100px;
 
+  top: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;

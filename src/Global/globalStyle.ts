@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
 
     font-family: "Flexo-Medium",arial,sans-serif;
 }
+
+body {
+    background: url(" https://assets.pokemon.com/static2/_ui/img/chrome/body_bg.png");
+}
 `;
 
 export { GlobalStyle };
