@@ -1,6 +1,11 @@
 import { KeyboardEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+import { FormSearchStyled } from "./styles";
+
 const InputSearch = () => {
   const navigate = useNavigate();
 
@@ -17,17 +22,22 @@ const InputSearch = () => {
   }
 
   return (
-    <>
-      <input
-        type="text"
-        placeholder="Pesquise pelo nome ou número da pokedex"
-        style={{ width: "1000px", height: "50px" }}
-        onKeyUp={handleSearch}
-        onChange={(event) => setInputSearch(event.target.value)}
-        value={inputSearch}
-      />
-      <button onClick={handleClickSearch}>Pesquisar</button>
-    </>
+    <FormSearchStyled>
+      <div>
+        <input
+          type="text"
+          placeholder="Nome ou número"
+          onKeyUp={handleSearch}
+          onChange={(event) => setInputSearch(event.target.value)}
+          value={inputSearch}
+        />
+        <button onClick={handleClickSearch}>
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </div>
+
+      <span>Pesquise pelo nome do pokémon ou pelo número da pokedex</span>
+    </FormSearchStyled>
   );
 };
 

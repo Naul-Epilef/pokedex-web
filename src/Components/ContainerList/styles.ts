@@ -11,6 +11,13 @@ const ContainerListStyled = styled.div`
   margin-top: 110px;
   background: #fff
     url("https://assets.pokemon.com/static2/_ui/img/chrome/container_bg.png");
+
+  span {
+    margin-top: 10px;
+
+    color: #919191;
+    font-size: 35px;
+  }
 `;
 
 export { ContainerListStyled };
