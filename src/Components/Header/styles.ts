@@ -24,11 +24,6 @@ const HeaderStyled = styled.header`
   }
 
   ul li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
     color: #898989;
     font-size: 20px;
 
@@ -43,13 +38,21 @@ const HeaderStyled = styled.header`
     color: #fff;
   }
 
-  ul li svg {
+  ul li a svg {
     font-size: 25px;
   }
 
   ul li a {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     color: #898989;
-    /* margin: 0 25px; */
+
     text-decoration: none;
     transition: all 0.2s;
   }

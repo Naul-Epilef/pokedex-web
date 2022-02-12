@@ -13,16 +13,22 @@ const Header = () => {
     <HeaderStyled>
       <ul>
         <li>
-          <FontAwesomeIcon icon={faListOl} />
-          <a href="/pagina/1">Paginada</a>
+          <a href="/pagina/1">
+            <FontAwesomeIcon icon={faListOl} />
+            Paginada
+          </a>
         </li>
         <li>
-          <FontAwesomeIcon icon={faList} />
-          <a href="/lista">Lista</a>
+          <a href="/lista">
+            <FontAwesomeIcon icon={faList} />
+            Lista
+          </a>
         </li>
         <li>
-          <FontAwesomeIcon icon={faBookmark} />
-          <a href="/favoritos">Favoritos</a>
+          <a href="/favoritos">
+            <FontAwesomeIcon icon={faBookmark} />
+            Favoritos
+          </a>
         </li>
       </ul>
     </HeaderStyled>
