@@ -8,7 +8,9 @@ export async function getPokemons(): Promise<IPokemon[]> {
     })
     .then((resJson) => {
       const results = resJson.results as IPokemon[];
-      const storage = validateFavorites() ? getFavorites() : { favs: [] };
+      const storage = validateFavorites()
+        ? getFavorites()
+        : { favs: [], perPage: 30 };
       results.map((result) => {
         if (storage.favs.includes(result.national_number)) {
           result.isFavorite = true;

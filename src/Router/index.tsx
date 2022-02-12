@@ -7,8 +7,17 @@ import ListPokemon from "./ListPokemon";
 import NotFound from "./NotFound";
 import PagedPokemon from "./PagedPokemon";
 import FavoritePokemon from "./FavoritedPokemon";
+import { useEffect } from "react";
+import {
+  createDefaultStorage,
+  validateFavorites,
+} from "../services/localStorage";
 
 const Router = () => {
+  useEffect(() => {
+    if (!validateFavorites()) createDefaultStorage();
+  }, []);
+
   return (
     <BrowserRouter>
       <Header />

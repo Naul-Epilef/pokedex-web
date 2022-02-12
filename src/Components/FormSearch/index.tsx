@@ -6,7 +6,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import { FormSearchStyled } from "./styles";
 
-const InputSearch = () => {
+const FormSearch = () => {
   const navigate = useNavigate();
 
   const [inputSearch, setInputSearch] = useState<string>("");
@@ -41,4 +41,4 @@ const InputSearch = () => {
   );
 };
 
-export default InputSearch;
+export default FormSearch;

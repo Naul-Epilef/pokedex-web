@@ -14,7 +14,7 @@ const FavoritePokemon = () => {
     validateFavorites()
   );
   const [storage, setStorage] = useState<ILocalStorage>(
-    isFavsValidate ? getFavorites() : { favs: [] }
+    isFavsValidate ? getFavorites() : { favs: [], perPage: 30 }
   );
 
   const [pokemonList, setPokemonList] = useState<IPokemon[]>([]);
@@ -39,7 +39,7 @@ const FavoritePokemon = () => {
 
   function updateStorage() {
     setIsFavsValidate(validateFavorites());
-    setStorage(isFavsValidate ? getFavorites() : { favs: [] });
+    setStorage(isFavsValidate ? getFavorites() : { favs: [], perPage: 30 });
   }
 
   return (

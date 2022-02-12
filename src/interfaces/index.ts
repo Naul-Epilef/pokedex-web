@@ -17,6 +17,7 @@ export interface ITable {
   pokemonList: IPokemon[];
   isFavorite?: false | boolean;
   updateStorage?(): void;
+  Pagination?: JSX.Element;
 }
 
 export interface IPokemonType {
@@ -25,4 +26,5 @@ export interface IPokemonType {
 
 export interface ILocalStorage {
   favs: string[];
+  perPage: number;
 }
