@@ -6,6 +6,10 @@ import {
   setFavorites,
 } from "../../services/localStorage";
 
+import { Card, CardBody, CardName, CardType, ContainerList } from "./styles";
+
+import PokemonType from "../PokemonType";
+
 const Table = ({ pokemonList, isFavorite, updateStorage }: ITable) => {
   function handleToggleFavorite(id: string, national_number: string) {
     if (validateFavorites()) {
@@ -14,11 +18,12 @@ const Table = ({ pokemonList, isFavorite, updateStorage }: ITable) => {
       if (!storage.favs.includes(national_number)) {
         storage.favs.push(national_number);
         storage.favs.sort();
-        document.getElementById(id)!.innerHTML = "Desfavoritar";
+
+        document.getElementById(id)!.className = "fa-solid fa-bookmark";
       } else {
         const index = storage.favs.indexOf(national_number);
         storage.favs.splice(index, 1);
-        document.getElementById(id)!.innerHTML = "Favoritar";
+        document.getElementById(id)!.className = "fa-regular fa-bookmark";
       }
 
       setFavorites(storage);
@@ -35,64 +40,47 @@ const Table = ({ pokemonList, isFavorite, updateStorage }: ITable) => {
     setFavorites(storage);
   }
 
-  function handleShowFavorites() {
-    if (validateFavorites()) {
-      console.log(getFavorites());
-    }
-  }
   return (
-    <ul>
+    <ContainerList>
       {pokemonList &&
-        pokemonList.map((pokemon) => (
-          <li key={pokemon.national_number + "." + pokemon.evolution?.name}>
-            <ul>
-              <li
-                key={
-                  pokemon.national_number +
-                  "." +
-                  pokemon.evolution?.name +
-                  ".img"
-                }
-              >
-                <img src={pokemon.sprites.large} alt={pokemon.name} />
-                <img src={pokemon.sprites.normal} alt={pokemon.name} />
-                <img src={pokemon.sprites.animated} alt={pokemon.name} />
-              </li>
-              <li
-                key={
-                  pokemon.national_number +
-                  "." +
-                  pokemon.evolution?.name +
-                  ".infos"
-                }
-                // onClick={() => handleFavorite(pokemon.national_number)}
-              >
-                {`${pokemon.name} ${pokemon.national_number}`}
-                <button
-                  id={`${pokemon.name}.${pokemon.national_number}`}
-                  onClick={() =>
-                    handleToggleFavorite(
-                      `${pokemon.name}.${pokemon.national_number}`,
-                      pokemon.national_number
-                    )
-                  }
-                >
-                  {pokemon.isFavorite ? "Desfavoritar" : "Favoritar"}
-                </button>
-                <button onClick={() => handleShowFavorites()}>Mostrar</button>
-              </li>
-              <li
-                key={
-                  pokemon.national_number +
-                  "." +
-                  pokemon.evolution?.name +
-                  ".type"
-                }
-              >
-                {pokemon.type.map((type, index, arr) => {
-                  if (index + 1 === arr.length) {
+        pokemonList.map((pokemon, index) => {
+          let isFavorite;
+          if (pokemon.isFavorite) {
+            isFavorite = "fa-solid fa-bookmark";
+          } else {
+            isFavorite = "fa-regular fa-bookmark";
+          }
+
+          return (
+            <Card key={pokemon.national_number + "." + pokemon.name}>
+              <div>
+                <img
+                  src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.national_number}.png`}
+                  alt={pokemon.name}
+                />
+              </div>
+              <CardBody>
+                <span>#{pokemon.national_number}</span>
+                <CardName>
+                  <span>{pokemon.name}</span>
+                  <span
+                    onClick={(event) =>
+                      handleToggleFavorite(
+                        `${pokemon.name}.${pokemon.national_number}`,
+                        pokemon.national_number
+                      )
+                    }
+                  >
+                    <i
+                      className={isFavorite}
+                      id={`${pokemon.name}.${pokemon.national_number}`}
+                    ></i>
+                  </span>
+                </CardName>
+                <CardType>
+                  {pokemon.type.map((type, index, arr) => {
                     return (
-                      <span
+                      <PokemonType
                         key={
                           pokemon.national_number +
                           "." +
@@ -100,30 +88,16 @@ const Table = ({ pokemonList, isFavorite, updateStorage }: ITable) => {
                           ".type." +
                           type
                         }
-                      >
-                        {type + " "}
-                      </span>
+                        type={type}
+                      />
                     );
-                  }
-                  return (
-                    <span
-                      key={
-                        pokemon.national_number +
-                        "." +
-                        pokemon.evolution?.name +
-                        ".type." +
-                        type
-                      }
-                    >
-                      {type + ", "}
-                    </span>
-                  );
-                })}
-              </li>
-            </ul>
-          </li>
-        ))}
-    </ul>
+                  })}
+                </CardType>
+              </CardBody>
+            </Card>
+          );
+        })}
+    </ContainerList>
   );
 };
 

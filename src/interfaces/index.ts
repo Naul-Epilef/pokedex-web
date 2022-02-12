@@ -19,6 +19,10 @@ export interface ITable {
   updateStorage?(): void;
 }
 
+export interface IPokemonType {
+  type: string;
+}
+
 export interface ILocalStorage {
   favs: string[];
 }
